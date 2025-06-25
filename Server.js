@@ -11,7 +11,14 @@ const cors = require('cors');
 const routes = require('./JournalRoutes'); // ✅ Fix here
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',                     // for local dev
+    'https://daily-journal-steel.vercel.app/'      // ✅ REPLACE with your real Vercel URL
+  ],
+  methods: ['GET', 'POST', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json());
 
 
