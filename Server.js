@@ -14,7 +14,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',                     // for local dev
-    'https://daily-journal-steel.vercel.app/'      // ✅ REPLACE with your real Vercel URL
+    'https://daily-journal-steel.vercel.app'      // ✅ REPLACE with your real Vercel URL
   ],
   methods: ['GET', 'POST', 'DELETE'],
   credentials: true
@@ -31,6 +31,8 @@ mongoose.connect(process.env.MONGODB_URI, {
   .catch(err => console.error('❌ Mongo error:', err.message));
 
 app.use('/api', routes);//route
-app.listen(process.env.PORT || 3000, () => {
-  console.log('🚀 Server running on http://localhost:5000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
+
