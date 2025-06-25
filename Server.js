@@ -1,15 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+//require('dotenv').config();
+require('dotenv').config();
+//mongoose.connect(process.env.MONGODB_URI)
+
 const routes = require('./JournalRoutes'); // ✅ Fix here
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 console.log("🛠️ server.js started");
 
-mongoose.connect('mongodb://localhost:27017/journal-app', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('✅ MongoDB connected'))
