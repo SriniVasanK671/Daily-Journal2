@@ -1,8 +1,11 @@
+require('dotenv').config();
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 //require('dotenv').config();
-require('dotenv').config();
+
 //mongoose.connect(process.env.MONGODB_URI)
 
 const routes = require('./JournalRoutes'); // ✅ Fix here
@@ -20,8 +23,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => console.log('✅ MongoDB connected'))
   .catch(err => console.error('❌ Mongo error:', err.message));
 
-app.use('/api', routes);//middware
-
-app.listen(5000, () => {
+app.use('/api', routes);//route
+app.listen(process.env.PORT || 3000, () => {
   console.log('🚀 Server running on http://localhost:5000');
 });
